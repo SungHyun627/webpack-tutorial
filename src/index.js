@@ -1,12 +1,16 @@
 import _ from 'lodash';
+import Print from './print';
 
 async function getComponent() {
   const element = document.createElement('div');
   const btn = document.createElement('button');
+
   btn.innerHTML = 'Click me and check the console!';
   element.appendChild(btn);
+
   const { default: _ } = await import('lodash');
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.onclick = Print.bind(null, 'Hello webpack!');
   return element;
 }
 
